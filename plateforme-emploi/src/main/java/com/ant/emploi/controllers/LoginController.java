@@ -1,4 +1,4 @@
-package com.ant.emploi.config;
+package com.ant.emploi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ant.emploi.config.JwtTokenUtil;
 import com.ant.emploi.entities.Utilisateur;
 import com.ant.emploi.model.JwtResponse;
 import com.ant.emploi.services.UtilisateurService;
