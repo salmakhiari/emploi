@@ -1,0 +1,143 @@
+<div class="row">
+  <!-- Column -->
+  <div class="col-lg-4 col-xlg-3 col-md-5">
+    <div class="card">
+      <div class="card-body">
+        <div class="m-t-30 text-center">
+          <img *ngIf="!user.image" src="../../../assets/images/users/avatar5.png" class="rounded-circle" width="150"/>
+          <img *ngIf="user.image" [src]="user.image" class="rounded-circle" width="150"/>
+          <h4 class="card-title m-t-10">{{user?.nomPrenom}} </h4>
+          <h6 class="card-subtitle">{{cv.titre}}</h6>
+
+        </div>
+      </div>
+      <div>
+        <hr>
+      </div>
+      <div class="card-body">
+        <small class="text-muted">Email</small>
+        <h6>{{user.email}}</h6>
+        <small class="text-muted p-t-30 db">Téléphone</small>
+        <h6>{{user.tel}}</h6>
+        <small class="text-muted p-t-30 db">Date de naissance</small>
+        <h6>{{user.dateNaissance | date: 'dd/MM/yyyy'}}</h6>
+        <small class="text-muted p-t-30 db">Adresse</small>
+        <h6>{{user.adresse}}</h6>
+
+      </div>
+    </div>
+  </div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-lg-8 col-xlg-9 col-md-7">
+    <div class="card">
+      <ngb-tabset type="pills" class="custom-pills">
+        <ngb-tab title="Diplômes et Formations">
+          <ng-template ngbTabContent>
+            <div class="card-body">
+              <ul class="timeline timeline-left">
+
+                <li class="timeline-inverted timeline-item" *ngFor="let ed of educations">
+
+                  <div class="timeline-badge btn-secondary">
+                    <i class="fa fa-graduation-cap"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title">{{ed.nomDiplome}}</h4>
+                      <span
+                        class="sl-date">{{ed.dateDebut | date:'dd/MM/yyyy'}} - {{ed.dateFin | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div class="timeline-body">
+                      <p><label class="text text-primary">{{ed.nomEcole}}</label> , {{ed.lieu}}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Expériences professionnelles">
+          <ng-template ngbTabContent>
+            <div class="card-body">
+
+              <ul class="timeline timeline-left">
+
+                <li class="timeline-inverted timeline-item" *ngFor="let exp of experiences">
+
+                  <div class="timeline-badge btn-secondary">
+                    <i class=" sl-icon-briefcase"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title">{{exp.poste}}</h4>
+                      <span
+                        class="sl-date">{{exp.dateDebut | date:'dd/MM/yyyy'}} - {{exp.dateFin | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div class="timeline-body">
+                      <p><label class="text text-primary">{{exp.nomSociete}}</label> , {{exp.lieu}}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Compétences">
+          <ng-template ngbTabContent>
+
+            <div class="card-body">
+              <h4 class="font-medium m-t-30">Compétences Techniques</h4>
+              <hr>
+              <div *ngFor="let comp of competences">
+
+                <h5 class="m-t-30">{{comp.libelle}} <span class="pull-right">
+              <label #lab>
+                {{comp.niveau /100 | percent}}
+              </label>
+              </span></h5>
+                <ngb-progressbar type="success" [value]="comp.niveau"></ngb-progressbar>
+              </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+              <h4 class="font-medium m-t-30">Langues</h4>
+              <hr>
+              <div *ngFor="let comp of langues">
+
+
+                <h5 class="m-t-30">{{comp.libelle}} <span class="pull-right">
+              <label #lab>
+                {{comp.niveau /100 | percent}}
+              </label>
+              </span></h5>
+                <ngb-progressbar type="success" [value]="comp.niveau"></ngb-progressbar>
+              </div>
+
+            </div>
+
+
+
+
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Centre d'intéret">
+          <ng-template ngbTabContent>
+            <div class="card-body">
+
+              <div *ngFor="let comp of centreInterets">
+                <h5 class="m-t-30">{{comp.libelle}}</h5>
+              </div>
+
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+  <!-- Column -->
+</div>

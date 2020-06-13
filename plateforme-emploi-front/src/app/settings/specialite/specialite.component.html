@@ -1,0 +1,46 @@
+<button pButton label="Nouvelle spécialité" icon="pi pi-plus" class="ui-button-success" (click)="clickAdd()"
+        style="float: right"></button>
+
+<br>
+<br>
+
+<p-table [value]="specialities">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Libellé</th>
+      <th width="15%">Opérations</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-spec>
+    <tr>
+      <td>{{spec.libelle}}</td>
+      <td width="15%">
+        <button pButton class="ui-button-danger" icon="pi pi-trash" pTooltip="Supprimer"
+                (click)="supprimer(spec.id)" style="margin-right: 10px"></button>
+        <button pButton class="ui-button-warning" icon="pi pi-pencil" pTooltip="Editer"
+                (click)="clickEdit(spec)"></button>
+
+
+      </td>
+
+    </tr>
+  </ng-template>
+</p-table>
+<p-dialog header="Spécialité" [(visible)]="display" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [baseZIndex]="10000">
+
+  Libellé:
+  <input pInputText [(ngModel)]="specialite.libelle" required #spec="ngModel">
+
+
+  <p-footer>
+    <button *ngIf="!visible" type="button" pButton icon="pi pi-check" (click)="ajouter()" label="Ajouter"
+            [disabled]="spec.invalid"></button>
+    <button *ngIf="visible" type="button" pButton icon="pi pi-check" (click)="modifier()" label="Modifier"
+            [disabled]="spec.invalid"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Annuler"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

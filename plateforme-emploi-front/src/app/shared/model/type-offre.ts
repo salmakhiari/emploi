@@ -1,0 +1,4 @@
+export class TypeOffre {
+  id: number;
+  libelle: string;
+}

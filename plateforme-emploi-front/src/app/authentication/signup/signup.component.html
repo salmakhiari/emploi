@@ -1,0 +1,182 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
+     style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+  <div class="auth-box">
+    <div>
+      <div class="logo">
+        <span class="db"><img src="assets/images/logo-icon.png" alt="logo"/></span>
+        <h5 class="font-medium m-b-20">S'inscrir</h5>
+      </div>
+      <!-- Form -->
+      <div class="row">
+        <div class="col-12">
+          <form class="form-horizontal m-t-20" #f="ngForm" (ngSubmit)="f.form.valid && register()">
+
+            <div class="form-group row ">
+              <label>Carte Nationale d'Identité</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="text" required
+                       placeholder="Carte Nationale d'Identité"
+                       pKeyFilter="pnum" minlength="8" maxlength="8"
+                       [(ngModel)]="candidat.cin" name="cin" #cin="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && nom.invalid">
+                <div *ngIf="cin.errors['required']">
+                  CIN obligatoire
+                </div>
+                <div *ngIf="cin.errors['minlength']">
+                  CIN doit contenir 8 chiffres
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Nom et Prénom</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="text" required placeholder="Nom et Prénom"
+
+                       [(ngModel)]="candidat.nomPrenom" name="nom" #nom="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && nom.invalid">
+                <div *ngIf="nom.errors['required']">
+                  Nom obligatoire
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Date de Naissance</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="date" required placeholder="Date de naissance"
+
+                       [(ngModel)]="candidat.dateNaissance" name="date" #date="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && date.invalid">
+                <div *ngIf="date.errors['required']">
+                  Date de naissance obligatoire
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Téléphone</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="text" required placeholder="Téléphone"
+                       pKeyFilter="pnum"
+                       [(ngModel)]="candidat.tel" name="tel" #tel="ngModel" maxlength="8" minlength="8">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && tel.invalid">
+                <div *ngIf="tel.errors['required']">
+                  Téléphone obligatoire
+                </div>
+
+                <div *ngIf="tel.errors['minlength']">
+                  Téléphone doit contenir 8 chiffres
+                </div>
+
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Adresse</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="text" required placeholder="Adresse"
+                       [(ngModel)]="candidat.adresse" name="adresse" #adresse="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && adresse.invalid">
+                <div *ngIf="adresse.errors['required']">
+                  Adresse obligatoire
+                </div>
+
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>E-mail</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="email" required email placeholder="Email"
+                       pKeyFilter="email"
+                       [(ngModel)]="candidat.email" name="email" #email="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && email.invalid">
+                <div *ngIf="email.errors['required']">
+                  Email obligatoire
+                </div>
+                <div *ngIf="email.errors['email']">
+                  Email invalid
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Mot de passe</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="password" required placeholder="Mot de passe"
+                       [(ngModel)]="candidat.password" name="pwd" #pwd="ngModel">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && pwd.invalid">
+                <div *ngIf="pwd.errors['required']">
+                  Mot de passe obligatoire
+                </div>
+
+
+              </div>
+            </div>
+
+
+            <div class="form-group row ">
+              <label>Confirmer Mot de passe</label>
+              <div class="col-12 ">
+                <input class="form-control form-control-lg" type="password" required
+                       placeholder="Confrimation Mot de passe"
+                       [(ngModel)]="confirmPwd" name="pwd2" #pwd2="ngModel" pattern="{{pwd.value}}">
+              </div>
+              <div class="col-12 form-text text-danger" *ngIf="f.submitted && pwd2.invalid">
+                <div *ngIf="pwd2.errors['required']">
+                  Confirmation Mot de passe obligatoire
+                </div>
+                <div *ngIf="pwd2.errors['pattern']">
+                  Les mots de passe ne sont pas identiques
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label>Image</label>
+              <div class="custom-file">
+                <input class="custom-file-input"
+                       (change)="selectFile($event)"
+                       accept='image/*'
+                       id="inputGroupFile03" type="file"><label
+                class="custom-file-label" for="inputGroupFile03">{{chooseFile}}</label></div>
+            </div>
+
+            <div class="form-group text-center ">
+              <div class="col-xs-12 p-b-20 ">
+                <button class="btn btn-block btn-lg btn-info " type="submit ">S'inscrir</button>
+              </div>
+            </div>
+            <div class="form-group m-b-0 m-t-10 ">
+              <div class="col-sm-12 text-center ">
+                Vous avez déja un copte ?<a href="#/authentication/login " class="text-info m-l-5 "><b>Login</b></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

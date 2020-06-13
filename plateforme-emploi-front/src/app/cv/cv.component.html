@@ -1,0 +1,63 @@
+<div class="form-group row " >
+  <label class="col-md-12">Titre</label>
+  <div class="col-12 ">
+    <input class="form-control form-control-lg" type="text" required placeholder="Titre"
+            (blur)="changeTitre()"
+           [(ngModel)]="cv.titre" name="cc" #cc="ngModel">
+  </div>
+  <div class="col-12 form-text text-danger" *ngIf="cc.invalid && cc.touched">
+    <div *ngIf="cc.errors['required']">
+      Titre obligatoire
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<ngb-tabset *ngIf="cv.id">
+  <ngb-tab title="Diplômes et Formations">
+    <ng-template ngbTabContent>
+
+        <app-education  [cv]="cv"></app-education>
+
+
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>Expériences professionnelles</b></ng-template>
+    <ng-template ngbTabContent>
+      <app-experience [cv]="cv"></app-experience>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Compétences">
+    <ng-template ngbTabContent>
+      <app-competence [cv]="cv"></app-competence>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Certifications">
+    <ng-template ngbTabContent>
+      <app-certification [cv]="cv"></app-certification>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Langues">
+    <ng-template ngbTabContent>
+      <app-langue [cv]="cv"></app-langue>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Centre d'interet">
+    <ng-template ngbTabContent>
+      <app-centre-interet [cv]="cv"></app-centre-interet>
+    </ng-template>
+  </ngb-tab>
+
+</ngb-tabset>
