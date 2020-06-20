@@ -49,7 +49,13 @@ public class TypeOffreService {
 	}
 
 	public List<TypeOffre> findAll() {
-		return typeOffreRepository.findAll();
+		return typeOffreRepository.findByParentIsNull();
+	}
+
+	public List<TypeOffre> findByParent(Integer id) {
+		TypeOffre parent = new TypeOffre();
+		parent.setId(id);
+		return typeOffreRepository.findByParent(parent);
 	}
 
 	public TypeOffre findById(Integer id) {

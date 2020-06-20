@@ -1,7 +1,9 @@
 package com.ant.emploi.config;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -20,6 +22,7 @@ public class JwtTokenUtil {
 	private String secret;
 
 	public String getUsernameFromToken(String token) {
+		
 		return getClaimFromToken(token, Claims::getSubject);
 	}
 
@@ -37,13 +40,18 @@ public class JwtTokenUtil {
 		return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
 	}
 
-	private String doGenerateToken(Map<String, Object> claims, String subject) {
+	private String doGenerateToken(List<String> claims, String subject) {
+		
 
 		String token = "Bearer ";
 		token += Jwts.builder().setSubject(subject)
+				.claim("roles",claims)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY)) // in milliseconds
 				.signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
+		
+		System.out.println("***********");
+		System.out.println(token);
 		return token;
 	}
 
@@ -59,7 +67,11 @@ public class JwtTokenUtil {
 
 	public String generateToken(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("roles", userDetails.getAuthorities());
-		return doGenerateToken(claims, userDetails.getUsername());
+		List<String> roles = new ArrayList<>();
+		userDetails.getAuthorities().forEach(r -> {
+			roles.add(r.getAuthority());
+		});
+	
+		return doGenerateToken(roles, userDetails.getUsername());
 	}
 }

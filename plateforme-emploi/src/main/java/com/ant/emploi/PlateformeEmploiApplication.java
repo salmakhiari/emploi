@@ -15,14 +15,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ant.emploi.entities.Candidat;
+import com.ant.emploi.entities.Cv;
 import com.ant.emploi.model.MessageResponse;
 import com.ant.emploi.services.CandidatService;
+import com.ant.emploi.services.CvService;
 import com.ant.emploi.services.SpecialiteService;
 
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
 public class PlateformeEmploiApplication implements CommandLineRunner {
 
+	@Autowired
+	private CvService cvService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlateformeEmploiApplication.class, args);
@@ -30,9 +34,7 @@ public class PlateformeEmploiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
 		
 	}
 
-	
 }

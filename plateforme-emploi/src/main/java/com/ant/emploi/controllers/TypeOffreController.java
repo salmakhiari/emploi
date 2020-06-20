@@ -29,7 +29,10 @@ public class TypeOffreController {
 	public List<TypeOffre> findAll() {
 		return typeOffreService.findAll();
 	}
-
+	@GetMapping("/parent/{id}")
+	public List<TypeOffre> findByParent(@PathVariable Integer id) {
+		return typeOffreService.findByParent(id);
+	}
 	@GetMapping("/{id}")
 	public TypeOffre findById(@PathVariable Integer id) {
 		return typeOffreService.findById(id);

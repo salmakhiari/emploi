@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
@@ -17,6 +18,8 @@ public class TypeOffre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String libelle;
+	@ManyToOne
+	private TypeOffre parent;
 	@OneToMany(mappedBy = "typeOffre")
 	private List<Offre> offres;
 

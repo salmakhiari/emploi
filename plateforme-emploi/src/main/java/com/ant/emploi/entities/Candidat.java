@@ -10,19 +10,19 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.ToString;
+
 @Data
 @Entity
 public class Candidat extends Utilisateur {
-	
+
 	private String cin;
 	private String nomPrenom;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "candidat")
 	private Cv cv;
-	
-	
-	
 
 }
