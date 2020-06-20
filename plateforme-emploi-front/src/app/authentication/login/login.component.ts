@@ -21,9 +21,9 @@ export class LoginComponent {
 
   login() {
     this.authenticationService.authenticate(this.user).subscribe(res => {
-
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('currentUser', JSON.stringify(res.user));
+      console.log(res);
+      localStorage.setItem('token', res.body.token);
+      localStorage.setItem('currentUser', JSON.stringify(res.body.user));
       this.router.navigate(['/dashboard']);
 
     }, ex => {

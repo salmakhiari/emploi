@@ -4,36 +4,103 @@
 <br>
 <br>
 
-<p-table [value]="typeOffres">
+<p-table [value]="typeOffres" dataKey="id"
+      (onRowExpand)="getChild($event)" rowExpandMode="single"  >
   <ng-template pTemplate="header">
     <tr>
-      <th>Libellé</th>
+      <th style="width: 3em"></th>
+      <th>Type Offre</th>
       <th width="15%">Opérations</th>
 
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-spec>
+  <ng-template pTemplate="body" let-spec let-expanded="expanded">
     <tr>
+      <td>
+        <a href="#" [pRowToggler]="spec">
+          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
       <td>{{spec.libelle}}</td>
       <td width="15%">
         <button pButton class="ui-button-danger" icon="pi pi-trash" pTooltip="Supprimer"
                 (click)="supprimer(spec.id)" style="margin-right: 10px"></button>
-        <button pButton class="ui-button-warning" icon="pi pi-pencil" pTooltip="Editer"
+        <button pButton class="ui-button-warning" icon="pi pi-pencil" style="margin-right: 10px" pTooltip="Editer"
                 (click)="clickEdit(spec)"></button>
+
+        <button pButton class="ui-button-primary" icon="pi pi-sitemap" pTooltip="Editer"
+                (click)="createSousType(spec)"></button>
+      </td>
+
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="rowexpansion" let-rowData>
+    <tr>
+      <td [attr.colspan]="3">
+        <p-table [value]="sousTypeOffres" dataKey="id">
+          <ng-template pTemplate="header">
+    <tr>
+
+      <th>Sous Type </th>
+      <th width="15%">Opérations</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-sous>
+    <tr>
+
+      <td>{{sous.libelle}}</td>
+      <td width="15%">
+        <button pButton class="ui-button-danger" icon="pi pi-trash" pTooltip="Supprimer"
+                (click)="supprimer(sous.id)" style="margin-right: 10px"></button>
+        <button pButton class="ui-button-warning" icon="pi pi-pencil" style="margin-right: 10px" pTooltip="Editer"
+                (click)="editSousType(sous)"></button>
 
 
       </td>
 
     </tr>
   </ng-template>
+
 </p-table>
-<p-dialog header="Spécialité" [(visible)]="display" [modal]="true" [responsive]="true"
+</tr>
+</ng-template>
+
+
+</p-table>
+<p-dialog header="Type Offre" [(visible)]="display" [modal]="true" [responsive]="true"
           [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
           [baseZIndex]="10000">
 
-  Libellé:
-  <input pInputText [(ngModel)]="typeOffre.libelle" required #spec="ngModel">
+  <div class="form-group">
+    Libellé:
+    <input pInputText [(ngModel)]="typeOffre.libelle" required #spec="ngModel">
+  </div>
 
+  <p-footer>
+    <button *ngIf="!visible" type="button" pButton icon="pi pi-check" (click)="ajouter()" label="Ajouter"
+            [disabled]="spec.invalid"></button>
+    <button *ngIf="visible" type="button" pButton icon="pi pi-check" (click)="modifier()" label="Modifier"
+            [disabled]="spec.invalid"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Annuler"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog header="Sous Type Offre" [(visible)]="display2" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [baseZIndex]="10000">
+  <div class="form-group">
+    Parent:
+    <input pInputText readonly [value]="typeOffre.parent?.libelle" required>
+
+  </div>
+  <div class="form-group">
+    Libellé:
+    <input pInputText [(ngModel)]="typeOffre.libelle" required #spec="ngModel">
+  </div>
 
   <p-footer>
     <button *ngIf="!visible" type="button" pButton icon="pi pi-check" (click)="ajouter()" label="Ajouter"

@@ -17,6 +17,10 @@ export class TypeOffreService {
   public getAll(): Observable<TypeOffre[]> {
     return this.httpClient.get<TypeOffre[]> (this.url);
   }
+
+  public getByParent(id): Observable<TypeOffre[]> {
+    return this.httpClient.get<TypeOffre[]> (this.url + '/parent/' + id);
+  }
   public getById(id): Observable<TypeOffre> {
     return this.httpClient.get<TypeOffre>(this.url + '/' + id);
   }

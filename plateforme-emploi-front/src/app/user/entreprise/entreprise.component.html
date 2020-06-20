@@ -1,1 +1,48 @@
-<p>entreprise works!</p>
+
+<p-table [value]="entreprises" dataKey="id">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3em"></th>
+      <th>Matricule Fiscal</th>
+      <th>Raison Social</th>
+      <th>Email</th>
+      <th>Téléphone</th>
+
+      <th width="15%">Statut</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-can let-expanded="expanded" >
+    <tr>
+
+      <td>
+        <a href="#" [pRowToggler]="can">
+          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
+      <td>{{can.matriculeFiscal}}</td>
+      <td>{{can.nomEntreprise}}</td>
+      <td>{{can.email}}</td>
+      <td>{{can.tel}}</td>
+
+      <td width="15%">
+        <p-inputSwitch (onChange)="changeEtat(can)" [(ngModel)]="can.enabled"></p-inputSwitch>
+
+      </td>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData >
+    <tr>
+      <td colspan="6">
+
+
+        <div class="form-group row">
+          <label class="col-2">Adresse:</label>
+          <label class="col-10">{{rowData.adresse}}</label>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
