@@ -1,0 +1,135 @@
+<form #f="ngForm" (ngSubmit)="f.form.valid && valider()">
+  <div class="card">
+    <div class="card-body">
+
+
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <label>Titre</label>
+        </div>
+        <div class="col-sm-10">
+          <input class="form-control" name="titre" required [(ngModel)]="offre.titre" #titre="ngModel">
+        </div>
+
+        <div class="col-sm-10  form-text text-danger" *ngIf="f.submitted && titre.invalid">
+          Titre obligatoire
+        </div>
+      </div>
+
+      <div class="form-group ">
+        <div class="row">
+          <label class="col-sm-5">Date création</label>
+          <label class="col-sm-5">Date expiration</label>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <input class="form-control" type="date" name="dateCreation" readonly required [(ngModel)]="offre.dateCreation"
+                   #dateCreation="ngModel">
+          </div>
+          <div class="col-sm-5">
+            <input class="form-control" type="date" name="dateExpiration" required  [(ngModel)]="offre.dateExpiration"
+                   #dateExpiration="ngModel">
+          </div>
+        </div>
+
+        <div class="row ">
+          <div class="form-text text-danger col-sm-5" >
+
+          </div>
+
+          <div class="form-text text-danger col-sm-5" *ngIf="f.submitted && dateExpiration.invalid">
+            Date expiration obligatoire
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group ">
+        <div class="row">
+          <label class="col-sm-5">Type Offre</label>
+          <label class="col-sm-5">Type contrat</label>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+           <select class="form-control" [compareWith]="compareTypeOffre" [(ngModel)]="typeOffre" required #par="ngModel" name="par"
+           (change)="getChildren()">
+             <option [ngValue]="ty" *ngFor="let ty of parents">{{ty.libelle}}</option>
+           </select>
+          </div>
+          <div class="col-sm-5">
+            <select class="form-control" [compareWith]="compareTypeOffre"   [(ngModel)]="offre.typeOffre" required #child="ngModel" name="child">
+              <option [ngValue]="ty" *ngFor="let ty of children">{{ty.libelle}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row ">
+          <div class="form-text text-danger col-sm-5" *ngIf="f.submitted && par.invalid">
+          Type offre obligatoire
+          </div>
+          <div class="col-sm-5" *ngIf="par.valid"></div>
+
+          <div class="form-text text-danger col-sm-5" *ngIf="f.submitted && child.invalid">
+            Type contrat obligatoire
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group ">
+        <div class="row">
+          <label class="col-sm-5">Spécialité</label>
+          <label class="col-sm-5">Experience</label>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <select  class="form-control" [(ngModel)]="offre.specialite" required #spec="ngModel" name="spec"
+                     [compareWith]="compareSpec"     >
+              <option [ngValue]="ty" *ngFor="let ty of specialities">{{ty.libelle}}</option>
+            </select>
+          </div>
+          <div class="col-sm-5">
+            <select class="form-control" [(ngModel)]="offre.experience" required #exp="ngModel" name="exp">
+              <option [ngValue]="ty" *ngFor="let ty of experiences">{{ty}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row ">
+          <div class="form-text text-danger col-sm-5" *ngIf="f.submitted && spec.invalid">
+            Spécialité obligatoire
+          </div>
+          <div class="col-sm-5" *ngIf="par.valid"></div>
+
+          <div class="form-text text-danger col-sm-5" *ngIf="f.submitted && exp.invalid">
+           Experience obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <label>Déscription</label>
+        </div>
+        <div class="col-sm-10">
+          <textarea class="form-control" name="desc" required [(ngModel)]="offre.description" #desc="ngModel">
+          </textarea>
+        </div>
+
+        <div class="col-sm-10  form-text text-danger" *ngIf="f.submitted && desc.invalid">
+          Déscription obligatoire
+        </div>
+      </div>
+
+
+<div class="card-footer">
+<div class="form-group m-b-0 text-right">
+  <button type="reset" class="btn btn-danger">Annuler</button>
+  <button type="submit" class="btn btn-success m-r-10" *ngIf="!id">Ajouter</button>
+  <button type="submit" class="btn btn-warning m-r-10" *ngIf="id">Modifier</button>
+</div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</form>

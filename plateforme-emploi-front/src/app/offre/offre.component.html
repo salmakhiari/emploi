@@ -1,0 +1,57 @@
+<p-table [value]="offres" dataKey="id" >
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3em"></th>
+      <th>Titre</th>
+      <th>Spécialité</th>
+      <th>Type offre</th>
+      <th width="15%">Opérations</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-expanded="expanded" let-offre >
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="offre">
+          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
+      <td>{{offre.titre}}</td>
+      <td>{{offre?.specialite?.libelle}}</td>
+      <td>{{offre?.typeOffre?.parent?.libelle}} - {{offre?.typeOffre?.libelle}}</td>
+      <td width="15%">
+        <button pButton class="ui-button-danger" icon="pi pi-trash" pTooltip="Supprimer"
+                (click)="supprimer(offre.id)" style="margin-right: 10px"></button>
+        <button pButton class="ui-button-warning" icon="pi pi-pencil" pTooltip="Editer"
+                (click)="clickEdit(offre)"></button>
+
+
+      </td>
+
+    </tr>
+  </ng-template>
+
+
+  <ng-template pTemplate="rowexpansion" let-rowData>
+    <tr>
+      <td [attr.colspan]="5">
+
+        <div class="form-group row">
+          <label class="col-sm-2">Date création:</label>
+          <label class="col-sm-2">{{rowData.dateCreation | date: 'dd/MM/yyyy' }}</label>
+          <label class="col-sm-2">Date expiration:</label>
+          <label class="col-sm-2">{{rowData.dateExpiration | date: 'dd/MM/yyyy' }}</label>
+          <label class="col-sm-2">Expérience:</label>
+          <label class="col-sm-2">{{rowData.experience}}</label>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2">Déscription:</label>
+          <label class="col-sm-10">{{rowData.description}}</label>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>

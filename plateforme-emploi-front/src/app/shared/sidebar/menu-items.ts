@@ -37,6 +37,33 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
+
+  {
+    path: '',
+    title: 'Offres',
+    icon: 'sl-icon-people',
+    class: 'has-arrow',
+    extralink: false,
+    roles: ['ROLE_ENTREPRISE'],
+    submenu: [
+      {
+        path: '/offre/entreprise',
+        title: 'Mes offres',
+        icon: 'sl-icon-book-open',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/offre/entreprise/new',
+        title: 'Nouvelle offre',
+        icon: 'icon-Car-Wheel',
+        class: '',
+        extralink: false,
+        submenu: []
+      }
+    ]
+  },
   {
     path: '',
     title: 'Paramètrages',
