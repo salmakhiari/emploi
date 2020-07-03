@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+
 @Data
 @Entity
 public class Candidature {
@@ -17,6 +18,9 @@ public class Candidature {
 	private CandidatureId id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCandidature;
+	private String etat;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateEntretien;
 	@ManyToOne
 	@JoinColumn(name = "idCv", insertable = false, updatable = false)
 	private Cv cv;
