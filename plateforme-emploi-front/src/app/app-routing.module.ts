@@ -34,6 +34,9 @@ export const Approutes: Routes = [
       {
         path: 'offre',
         loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule)
+      }, {
+        path: 'candidature',
+        loadChildren: () => import('./candidature/candidature.module').then(m => m.CandidatureModule)
       },
     ]
   },

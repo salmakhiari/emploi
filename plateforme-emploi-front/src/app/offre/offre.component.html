@@ -20,11 +20,15 @@
       <td>{{offre.titre}}</td>
       <td>{{offre?.specialite?.libelle}}</td>
       <td>{{offre?.typeOffre?.parent?.libelle}} - {{offre?.typeOffre?.libelle}}</td>
-      <td width="15%">
+      <td width="20%">
         <button pButton class="ui-button-danger" icon="pi pi-trash" pTooltip="Supprimer"
                 (click)="supprimer(offre.id)" style="margin-right: 10px"></button>
-        <button pButton class="ui-button-warning" icon="pi pi-pencil" pTooltip="Editer"
+        <button pButton class="ui-button-warning" icon="pi pi-pencil"  style="margin-right: 10px" pTooltip="Editer"
                 (click)="clickEdit(offre)"></button>
+
+
+        <button pButton class="ui-button-primary" icon="pi pi-search-plus"  pTooltip="Candidatures"
+                routerLink="/candidature/entreprise/{{offre.id}}"></button>
 
 
       </td>

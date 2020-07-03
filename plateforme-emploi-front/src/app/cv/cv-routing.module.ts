@@ -7,7 +7,8 @@ import {ViewCvComponent} from './view-cv/view-cv.component';
 const routes: Routes = [ {path: '', component: CvComponent, data: {
     title: 'Curriculum vitæ'
   }},
-  {path: 'view', component: ViewCvComponent}];
+  {path: 'view', component: ViewCvComponent},
+  {path: 'view/:id', component: ViewCvComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

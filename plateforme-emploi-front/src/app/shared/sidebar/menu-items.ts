@@ -4,15 +4,6 @@ import {stringify} from 'querystring';
 export const ROUTES: RouteInfo[] = [
   {
     path: '',
-    title: 'Dashboards',
-    icon: 'icon-Car-Wheel',
-    class: '',
-    extralink: false,
-    submenu: [],
-    roles: ['ROLE_ADMIN', 'ROLE_CANDIDAT', 'ROLE_ENTREPRISE']
-  },
-  {
-    path: '',
     title: 'Utilisateurs',
     icon: 'sl-icon-people',
     class: 'has-arrow',
@@ -41,7 +32,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '',
     title: 'Offres',
-    icon: 'sl-icon-people',
+    icon: 'sl-icon-briefcase',
     class: 'has-arrow',
     extralink: false,
     roles: ['ROLE_ENTREPRISE'],
@@ -90,6 +81,16 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
+
+  {
+    path: '/offre/show',
+    title: 'Offre',
+    icon: 'sl-icon-briefcase',
+    class: '',
+    extralink: false,
+    roles: ['ROLE_CANDIDAT'],
+    submenu: [ ]
+  },
   {
     path: '',
     title: 'Mon CV',
@@ -115,6 +116,15 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       }
     ]
+  },
+  {
+    path: '/candidature/candidat',
+    title: 'Mes candidatures',
+    icon: 'sl-icon-docs',
+    class: '',
+    extralink: false,
+    roles: ['ROLE_CANDIDAT'],
+    submenu: [ ]
   },
 
 ];

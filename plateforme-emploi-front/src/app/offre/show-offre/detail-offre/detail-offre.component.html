@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Entreprise</h4>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4">Raison social</label>
+          <label class="col-sm-8">{{offre.entreprise.nomEntreprise}}</label>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4">Email</label>
+          <label class="col-sm-8">{{offre.entreprise.email}}</label>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6">
+
+        <div class="form-group">
+          <label class="col-sm-4">Téléphone</label>
+          <label class="col-sm-8">{{offre.entreprise.tel}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4">Adresse</label>
+          <label class="col-sm-8">{{offre.entreprise.adresse}}</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header">
+    <h4>Détail offre</h4>
+  </div>
+
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4">Titre</label>
+          <label class="col-sm-8">{{offre.titre}}</label>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4">Spécialité</label>
+          <label class="col-sm-8">{{offre?.specialite?.libelle}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4">Date création</label>
+          <label class="col-sm-8">{{offre?.dateCreation | date: 'dd/MM/yyyy'}}</label>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+
+        <div class="form-group">
+          <label class="col-sm-4">Type offre</label>
+          <label class="col-sm-8">{{offre.typeOffre?.parent?.libelle}} - {{offre.typeOffre?.libelle}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4">Expériennce</label>
+          <label class="col-sm-8">{{offre.experience}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4">Date expiration</label>
+          <label class="col-sm-8">{{offre?.dateExpiration | date: 'dd/MM/yyyy'}}</label>
+        </div>
+
+      </div>
+
+      <div class=" col-sm-12">
+        <div class="form-group">
+          <label class="col-sm-2">Déscription</label>
+          <label class="col-sm-8">{{offre?.description}}</label>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="card-footer" *ngIf="!visible">
+    <div class="float-right">
+      <button  class=" btn btn-success" (click)="postuler()">Postuler</button>
+    </div>
+
+  </div>
+
+</div>

@@ -4,9 +4,9 @@
     <div class="card">
       <div class="card-body">
         <div class="m-t-30 text-center">
-          <img *ngIf="!user.image" src="../../../assets/images/users/avatar5.png" class="rounded-circle" width="150"/>
-          <img *ngIf="user.image" [src]="user.image" class="rounded-circle" width="150"/>
-          <h4 class="card-title m-t-10">{{user?.nomPrenom}} </h4>
+          <img *ngIf="!cv.candidat.image" src="../../../assets/images/users/avatar5.png" class="rounded-circle" width="150"/>
+          <img *ngIf="cv.candidat.image" [src]="cv.candidat.image" class="rounded-circle" width="150"/>
+          <h4 class="card-title m-t-10">{{cv.candidat?.nomPrenom}} </h4>
           <h6 class="card-subtitle">{{cv.titre}}</h6>
 
         </div>
@@ -16,13 +16,13 @@
       </div>
       <div class="card-body">
         <small class="text-muted">Email</small>
-        <h6>{{user.email}}</h6>
+        <h6>{{cv.candidat.email}}</h6>
         <small class="text-muted p-t-30 db">Téléphone</small>
-        <h6>{{user.tel}}</h6>
+        <h6>{{cv.candidat.tel}}</h6>
         <small class="text-muted p-t-30 db">Date de naissance</small>
-        <h6>{{user.dateNaissance | date: 'dd/MM/yyyy'}}</h6>
+        <h6>{{cv.candidat.dateNaissance | date: 'dd/MM/yyyy'}}</h6>
         <small class="text-muted p-t-30 db">Adresse</small>
-        <h6>{{user.adresse}}</h6>
+        <h6>{{cv.candidat.adresse}}</h6>
 
       </div>
     </div>
@@ -140,4 +140,11 @@
     </div>
   </div>
   <!-- Column -->
+
+  <div class="col-lg-12" *ngIf="id">
+  <div class="float-right">
+    <button class="btn btn-danger mr-2" >Réfuser candidature</button>
+    <button class="btn btn-success">Accepter candidature</button>
+  </div>
+  </div>
 </div>

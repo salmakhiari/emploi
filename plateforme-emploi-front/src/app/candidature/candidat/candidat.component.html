@@ -1,0 +1,29 @@
+
+<p-table [value]="candidatures" dataKey="id">
+  <ng-template pTemplate="header">
+    <tr>
+
+      <th>Date candidature</th>
+      <th>Offre</th>
+      <th>Etat</th>
+      <th>Date Entretien</th>
+
+
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-can >
+    <tr>
+
+
+      <td>{{can.dateCandidature | date: 'dd/MM/yyyy HH:mm'}}</td>
+      <td>{{can.offre.titre}}</td>
+      <td>{{can.etat}}</td>
+      <td>{{can.dateEntretien | date: 'dd/MM/yyyy HH:mm' }}</td>
+
+
+
+    </tr>
+  </ng-template>
+
+</p-table>

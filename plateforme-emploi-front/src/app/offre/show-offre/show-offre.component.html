@@ -1,0 +1,40 @@
+<p-dataView #dv [value]="offres"   >
+  <p-header>
+
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+
+  </p-header>
+  <ng-template let-off pTemplate="listItem">
+    <div class="row">
+     <div class="col-sm-1 mr-5">
+
+          <img [src]="off.entreprise.image" width="100" height="100">
+     </div>
+      <div class="col-sm-9">
+          <div class="ui-g">
+            <div class="ui-g-12">Titre: <b>{{off.titre}}</b></div>
+            <div class="ui-g-12">Type offre: <b>{{off.typeOffre.parent?.libelle}} - {{off.typeOffre?.libelle}}</b></div>
+            <div class="ui-g-12">Spécialité: <b>{{off.specialite.libelle}}</b></div>
+
+          </div>
+        </div>
+      <div class="col-sm-1 ml-3">
+        <div class=" bottom">
+        <button  class="btn btn-success" style="margin-top: 68px;"    routerLink="/offre/show/{{off.id}}">Détail offre</button>
+        </div>
+      </div>
+      </div>
+
+  </ng-template>
+  <ng-template let-off pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+      <p-panel [header]="off.titre" [style]="{'text-align':'center'}">
+        <img [src]="off.entreprise.image" width="60" height="60">
+        <div class="car-detail">{{off.typeOffre.parent?.libelle}} - {{off.typeOffre?.libelle}}</div>
+        <div class="car-detail">{{off.specialite?.libelle}}</div>
+        <hr class="ui-widget-content" style="border-top:0">
+        <button  class="btn btn-success"  routerLink="/offre/show/{{off.id}}">Détail offre</button>
+      </p-panel>
+    </div>
+  </ng-template>
+</p-dataView>

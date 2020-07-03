@@ -4,6 +4,7 @@ import {MessageService} from 'primeng/api';
 import {Utilisateur} from '../../shared/model/utilisateur';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {UtilisateurService} from '../../shared/services/utilisateur.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 
 @Component({
@@ -24,7 +25,17 @@ export class LoginComponent {
       console.log(res);
       localStorage.setItem('token', res.body.token);
       localStorage.setItem('currentUser', JSON.stringify(res.body.user));
-      this.router.navigate(['/dashboard']);
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(localStorage.getItem('token'));
+      const roles = decodedToken.roles;
+
+      if (roles[0] === 'ROLE_CANDIDAT') {
+        this.router.navigate(['/offre/show']);
+      } else if (roles[0] === 'ROLE_ENTREPRISE') {
+        this.router.navigate(['/offre/entreprise']);
+      } else {
+        this.router.navigate(['/user/candidat']);
+      }
 
     }, ex => {
       this.messageService.add({

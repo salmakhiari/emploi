@@ -12,6 +12,7 @@ import {CentreInteret} from '../../shared/model/centre-interet';
 import {CompetenceService} from '../../shared/services/competence.service';
 import {LangueService} from '../../shared/services/langue.service';
 import {CentreInteretService} from '../../shared/services/centre-interet.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-view-cv',
@@ -26,17 +27,22 @@ export class ViewCvComponent implements OnInit {
   competences: Competence[];
   langues: Langue[];
   centreInterets: CentreInteret[];
+id;
   constructor(private cvService: CvService,
               private educationService: EducationService,
               private competenceService: CompetenceService,
               private langueService: LangueService,
               private centreInteretService: CentreInteretService,
-              private experienceService: ExperienceService) {
+              private experienceService: ExperienceService,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.cvService.getById(this.user.id).subscribe(res => {
+   this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (!this.id) {
+      this.id = JSON.parse(localStorage.getItem('currentUser')).id;
+    }
+    this.cvService.getById(this.id).subscribe(res => {
       this.cv = res;
       this.getAllEducations();
       this.getAllExperiences();
@@ -56,6 +62,7 @@ export class ViewCvComponent implements OnInit {
       console.log(ex);
     });
   }
+
   getAllExperiences() {
     this.experienceService.getByCv(this.cv.id).subscribe(data => {
       this.experiences = data;
@@ -79,6 +86,7 @@ export class ViewCvComponent implements OnInit {
       console.log(ex);
     });
   }
+
   getAllCentreInters() {
     this.centreInteretService.getByCv(this.cv.id).subscribe(data => {
       this.centreInterets = data;

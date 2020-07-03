@@ -8,12 +8,13 @@ import {
   DialogModule,
   InputSwitchModule,
   InputTextModule,
-  KeyFilterModule,
+  KeyFilterModule, PanelModule,
   SliderModule
 } from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DataViewModule} from 'primeng/dataview';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NgxPermissionsModule,
     SliderModule,
     NgbModule,
+    DataViewModule,
+    PanelModule
     ]
 })
 export class SharedModule { }
