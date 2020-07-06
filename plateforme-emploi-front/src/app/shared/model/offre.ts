@@ -6,7 +6,7 @@ export class Offre {
   id: number;
   titre: string;
   description: string;
-  dateCreation: Date;
+  dateCreation: string;
   dateExpiration: Date;
   experience: string;
   entreprise: Entreprise;

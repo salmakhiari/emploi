@@ -46,7 +46,7 @@ export class AddOffreComponent implements OnInit {
         console.log(ex);
       });
     } else {
-   //   this.offre.dateCreation = moment(new Date()).format('YYYY-MM-DD');
+    this.offre.dateCreation = moment(new Date()).format('YYYY-MM-DD');
       this.minDate.setDate(this.minDate.getDate() + 1);
     }
 

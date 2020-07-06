@@ -57,6 +57,7 @@ export class SidebarComponent implements OnInit {
       this.name = JSON.parse(localStorage.getItem('currentUser')).nomEntreprise;
       this.image = JSON.parse(localStorage.getItem('currentUser')).image;
     } else {
+      this.image = JSON.parse(localStorage.getItem('currentUser')).image;
       this.name = 'Administrateur';
     }
 
